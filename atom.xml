@@ -4,7 +4,7 @@
   <title><![CDATA[18hb blog]]></title>
   <link href="http://18hb.github.com/atom.xml" rel="self"/>
   <link href="http://18hb.github.com/"/>
-  <updated>2012-11-08T15:19:48+09:00</updated>
+  <updated>2012-11-09T11:56:00+09:00</updated>
   <id>http://18hb.github.com/</id>
   <author>
     <name><![CDATA[18hb]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[画像埋め込み実験]]></title>
+    <link href="http://18hb.github.com/blog/2012/11/09/imagetest/"/>
+    <updated>2012-11-09T11:51:00+09:00</updated>
+    <id>http://18hb.github.com/blog/2012/11/09/imagetest</id>
+    <content type="html"><![CDATA[<ul>
+<li>画像を入れてみる
+<img src="https://github.com/downloads/18hb/18hb.github.com/png.png" title="タイトル" alt="Octocatだよ" /></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopressを試してみる]]></title>
