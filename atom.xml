@@ -4,7 +4,7 @@
   <title><![CDATA[18hb blog]]></title>
   <link href="http://18hb.github.com/atom.xml" rel="self"/>
   <link href="http://18hb.github.com/"/>
-  <updated>2012-11-09T11:56:00+09:00</updated>
+  <updated>2012-11-09T12:05:21+09:00</updated>
   <id>http://18hb.github.com/</id>
   <author>
     <name><![CDATA[18hb]]></name>
@@ -20,7 +20,7 @@
     <id>http://18hb.github.com/blog/2012/11/09/imagetest</id>
     <content type="html"><![CDATA[<ul>
 <li>画像を入れてみる
-<img src="https://github.com/downloads/18hb/18hb.github.com/png.png" title="タイトル" alt="Octocatだよ" /></li>
+<img src="https://github.com/downloads/18hb/18hb.github.com/octocat.png" title="タイトル" alt="Octocatだよ" /></li>
 </ul>
 
 ]]></content>
