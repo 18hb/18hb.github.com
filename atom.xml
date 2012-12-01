@@ -4,7 +4,7 @@
   <title><![CDATA[18hb blog]]></title>
   <link href="http://18hb.github.com/atom.xml" rel="self"/>
   <link href="http://18hb.github.com/"/>
-  <updated>2012-12-01T23:59:14+09:00</updated>
+  <updated>2012-12-02T03:32:08+09:00</updated>
   <id>http://18hb.github.com/</id>
   <author>
     <name><![CDATA[18hb]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[cpanmでGDがインストールできない]]></title>
+    <link href="http://18hb.github.com/blog/2012/12/02/fail-cpanm-gd/"/>
+    <updated>2012-12-02T01:35:00+09:00</updated>
+    <id>http://18hb.github.com/blog/2012/12/02/fail-cpanm-gd</id>
+    <content type="html"><![CDATA[<p><a href="http://gihyo.jp/dev/serial/01/codeiq/0001">百聞は一見に如かず～文字列処理＋画像処理＝？ ─小飼弾からの挑戦</a>
+というのを見つけて、perl + GD でプログラムを作ってみた。</p>
+
+<p>最初、リモートサーバーのcentos6.3上で作り始めて、
+GD本体は最初から入ってて、 perlのGDライブラリはyumでさくっとインストールできたので、
+順調にプログラムは完成したんだけど、
+自分が普段メインで使っているローカルマシン(MacOS X 10.8)でも動かしてみようと思って、
+ローカルにプログラムを持ってきて動かそうとしたら、GD.pmがない、と言われて動かなかった。
+MacOS X 10.8 に GD.pm をインストールするのに苦労して、そして遠回りした。</p>
+
+<p>GD自体は homebrew で <code>brew install gd</code> で問題なくインストールが完了。</p>
+
+<p>OS X 10.8 Mountain Lion にデフォルトでインストールされているperlは v5.12.4。
+このperlに対して <code>cpanm GD</code> でインストールしようとすると、</p>
+
+<pre><code>PERL_DL_NONLAZY=1 /usr/bin/perl "-MExtUtils::Command::MM" "-e" "test_harness(0, 'blib/lib', 'blib/arch')" t/*.t
+Testing using png support.
+t/GD.t ........ 
+Failed 1/12 subtests 
+(less 2 skipped subtests: 9 okay)
+t/Polyline.t .. ok
+
+Test Summary Report
+-------------------
+t/GD.t      (Wstat: 0 Tests: 12 Failed: 1)
+Failed test:  10
+Files=2, Tests=13,  0 wallclock secs ( 0.02 usr  0.01 sys +  0.16 cusr  0.02 csys =  0.21 CPU)
+Result: FAIL
+Failed 1/2 test programs. 1/13 subtests failed.
+make: *** [test_dynamic] Error 255
+-&gt; FAIL Installing GD failed. See /Users/18hb/.cpanm/build.log for details. 
+</code></pre>
+
+<p>というエラーが出てインストールができない。
+その他にも、</p>
+
+<pre><code>LD_RUN_PATH="/usr/local/lib:/usr/local/Cellar/libpng/1.5.13/lib:/usr/lib:/usr/local/Cellar/gd/2.0.36RC1/lib" clang -mmacosx-version-min=10.8  -arch i386 -arch x86_64 -bundle -undefined dynamic_lookup -L/usr/local/lib -fstack-protector GD.o  -o blib/arch/auto/GD/GD.bundle         \
+-L/usr/local/Cellar/libpng/1.5.13/lib -L/usr/local/Cellar/gd/2.0.36RC1/lib -ljpeg -lpng -lz -liconv -lgd     \
+
+ld: warning: ignoring file GD.o, file was built for unsupported file format ( 0xcf 0xfa 0xed 0xfe 0x 7 0x 0 0x 0 0x 1 0x 3 0x 0 0x 0 0x 0 0x 1 0x 0 0x 0 0x 0 ) which is not the architecture being linked (i386): GD.o
+ld: warning: ignoring file /usr/local/lib/libpng.dylib, file was built for unsupported file format ( 0xcf 0xfa 0xed 0xfe 0x 7 0x 0 0x 0 0x 1 0x 3 0x 0 0x 0 0x 0 0x 6 0x 0 0x 0 0x 0 ) which is not the architecture being linked (i386): /usr/local/lib/libpng.dylib
+ld: warning: ignoring file /usr/local/lib/libgd.dylib, file was built for unsupported file format ( 0xcf 0xfa 0xed 0xfe 0x 7 0x 0 0x 0 0x 1 0x 3 0x 0 0x 0 0x 0 0x 6 0x 0 0x 0 0x 0 ) which is not the architecture being linked (i386): /usr/local/lib/libgd.dylib
+</code></pre>
+
+<p>なんて警告も出てて、最初、リンクに失敗してる???とか、いろいろ試行錯誤して、
+いろいろググったりして結構はまってた。</p>
+
+<p>いろいろググって最後にたどり着いたのが、毎度おなじみ<a href="http://stackoverflow.com/questions/12897007/install-gd-failure">Stack Overflow</a>。
+なにやら、テストで失敗しているだけで強制インストールすることはできる、みたいなことが書いてあったので、
+<code>cpanm --force GD</code>とやったら、インストールが完了した！</p>
+
+<p>プログラムを動かしてみたら、きちんと動作していたのでGDの動きも問題なさそうだった。
+強制インストールにたどり着くまで2時間くらい迷走してました。。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[画像埋め込み実験]]></title>
